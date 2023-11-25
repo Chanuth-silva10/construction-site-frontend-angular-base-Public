@@ -1,0 +1,38 @@
+<div class="add-category">
+  <app-titlebar
+    breadcrumb="Category > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+
+  <!-- Add Category form -->
+  <form [formGroup]="addCategoryForm" [id]="formName" (ngSubmit)="submit()">
+
+
+
+      <!-- Form Container: Left -->
+      <app-add-container title="Category Information">
+        <div class="grid-wrapper-form">
+          <!-- Name inputs -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name"  required>
+
+            <!-- Error message -->
+            <mat-error *ngIf="name?.invalid">
+              Category name is required.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="description-container full-width">
+            <mat-label>Description</mat-label>
+            <quill-editor formControlName="description" class="description"   placeholder=""></quill-editor>
+          </div>
+        </div>
+      </app-add-container>
+
+  </form>
+  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+
+</div>
+
