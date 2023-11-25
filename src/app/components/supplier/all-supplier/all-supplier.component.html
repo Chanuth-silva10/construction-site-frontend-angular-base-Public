@@ -1,0 +1,10 @@
+<div class="all-suppliers">
+  <app-titlebar
+    breadcrumb="Home > Suppliers"
+    title="All Suppliers"
+    [buttons]="buttons"
+  ></app-titlebar>
+  <app-all-container title="All">
+    <app-table name="Suppliers" [displayedColumns]="displayedColumns" [url]="url" [columns]="columns"></app-table>
+  </app-all-container>
+</div>
