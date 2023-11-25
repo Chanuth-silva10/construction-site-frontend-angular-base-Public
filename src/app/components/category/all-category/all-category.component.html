@@ -1,0 +1,10 @@
+<div class="all-categories">
+  <app-titlebar
+    breadcrumb="Home > Categories"
+    title="All Categories"
+    [buttons]="buttons"
+  ></app-titlebar>
+  <app-all-container title="All">
+    <app-table name="Categories" [displayedColumns]="displayedColumns" [url]="url" [columns]="columns"></app-table>
+  </app-all-container>
+</div>
