@@ -1,0 +1,30 @@
+<div class="page-container">
+    <div class="form-container">
+      <h1 class="logo">Procuro</h1>
+      <h2 class="title">Log in to your system</h2>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <!-- Email input -->
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Ex. johndoe@example.com">
+        </mat-form-field>
+  
+         <!-- Password input -->
+         <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="showPass ? 'text' : 'password'" formControlName="password">
+          
+          <!-- Show/hide password button -->
+          <mat-icon matSuffix (click)="showPass = !showPass" class="btn-show-pass">
+            {{ showPass ? 'visibility_off' :'visibility' }}
+          </mat-icon>
+        </mat-form-field>
+  
+        <!-- <a href="#" class="link-forgot-password">Forgot Password?</a> -->
+  
+        <button mat-flat-button class="btn-login" [disabled]="loading">LOG IN</button>
+      </form>
+    </div>
+  </div>
+  

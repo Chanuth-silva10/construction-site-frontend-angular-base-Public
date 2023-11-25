@@ -1,0 +1,64 @@
+.page-container {
+    height: 100vh;
+    width: 100vw;
+    background: url('../../../assets/images/auth-background.jpg');
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: minmax(min-content, max-content);
+  }
+  
+  .form-container {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 24px;
+    grid-column: 3;
+    grid-row: 2;
+    margin-inline-end: 48px;
+  }
+  
+  .logo {
+    color: #152142;
+    margin-top: 12px;
+    text-align: center;
+    font-family: 'Ananda Black', sans-serif;
+    font-style: normal;
+    font-size: 32px;
+    user-select: none;
+  }
+  
+  .title {
+    text-align: center;
+    user-select: none;
+    font-size: 24px;
+    font-family: 'Bree Serif', sans-serif;
+    margin-block-end: 28px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .btn-login {
+    background: linear-gradient(91.86deg, #152142 -42.02%, #152142 -5.47%, #1A2238 48.98%, #1A2238 100%);
+    color: var(--white);
+    display: block;
+    margin: 24px auto;
+    padding-block: 8px 4px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+  }
+  
+  .link-forgot-password, .link-register {
+    color: var(--primary);
+    text-decoration: none;
+    display: block;
+    margin-block-start: -4px;
+  }
+  
+  .link-register {
+    text-align: center;
+  }
+  
