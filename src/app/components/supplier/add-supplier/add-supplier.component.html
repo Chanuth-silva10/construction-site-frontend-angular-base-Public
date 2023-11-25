@@ -1,0 +1,90 @@
+<div class="add-supplier">
+  <app-titlebar
+    breadcrumb="Supplier > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+
+  <!-- Add Supplier form -->
+  <form [formGroup]="addSupplierForm" [id]="formName" (ngSubmit)="submit()">
+
+
+
+    <!-- Form Container: Left -->
+    <app-add-container title="Supplier Information">
+      <div class="grid-wrapper-form">
+        <!-- Name inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" formControlName="name"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="name?.invalid">
+            Supplier name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Contact inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact</mat-label>
+          <input matInput type="text" formControlName="contact"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="contact?.errors?.required">
+            Supplier contact is required.
+          </mat-error>
+          <mat-error *ngIf="contact?.errors?.pattern">
+            Please enter a valid phone number.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Contact inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="email?.errors?.required">
+            Email is required.
+          </mat-error>
+          <mat-error *ngIf="email?.errors?.email">
+            Please enter a valid email.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Store Name inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Store Name</mat-label>
+          <input matInput type="text" formControlName="storeName"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="storeName?.invalid">
+            Supplier store name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Address inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Store Address</mat-label>
+          <input matInput type="text" formControlName="address"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="address?.invalid">
+            Store address is required.
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+
+
+
+      </div>
+    </app-add-container>
+
+  </form>
+  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+
+</div>
+
