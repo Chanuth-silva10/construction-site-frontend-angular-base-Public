@@ -2,7 +2,7 @@
 
 ## Project Image
 
-![proweb](https://github.com/Chanuth-silva10/construction-site-frontend-angular-base-Public/assets/80547770/cf2e639d-db18-4b7c-857c-80e687df6da4)
+![proweb](https://github.com/Chanuth-silva10/construction-site-frontend-angular-base-Public/assets/80547770/6f246785-8d46-4f10-90c1-57ec22d2f9eb)
 
 ## Overview
 Introducing a robust Construction Management System, a web application tailored for the construction industry. This comprehensive tool empowers construction site operations by seamlessly integrating various functionalities.
