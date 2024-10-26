@@ -1,0 +1,87 @@
+<div class="add-rules">
+  <app-titlebar
+    breadcrumb="Rules > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+
+  <!-- Add Site form -->
+  <form [formGroup]="addRulesForm" [id]="formName" (ngSubmit)="submit()">
+
+
+
+    <!-- Form Container: Left -->
+    <app-add-container title="Rules Information">
+      <div class="grid-wrapper-form">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rules Name</mat-label>
+          <input matInput type="text" formControlName="name"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="name?.invalid">
+            Rule Name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Rule Limit</mat-label>
+          <input matInput type="text" formControlName="limit" placeholder="Ex.50"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="limit?.errors?.required">
+            Rule limit is required.
+          </mat-error>
+          <mat-error *ngIf="limit?.errors?.pattern">
+            Rule limit can contain only numbers
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <input matInput type="text" formControlName="description"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="description?.invalid">
+            Description is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Approvals Required From</mat-label>
+          <mat-select formControlName="approvals" required multiple >
+            <mat-option *ngFor="let type of userTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="approvals?.invalid">
+            Please select the employee types
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Single Approval / Multiple Approval</mat-label>
+          <mat-select formControlName="approvalType" required >
+            <mat-option *ngFor="let type of approvalTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="approvalType?.invalid">
+            Please select an approval Type
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+      </div>
+    </app-add-container>
+
+  </form>
+  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+
+</div>
+
+
+
+

@@ -1,0 +1,112 @@
+.grid-wrapper-form {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+}
+
+.grid-wrapper {
+    grid-template-columns: 2fr 3fr;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.product-selector-wrapper {
+    display: grid;
+    grid-template-columns: 9fr 3fr 1fr;
+    grid-auto-rows: auto;
+}
+
+.remove-btn-wrapper {
+    text-align: center;
+}
+
+.qty-selector {
+    text-align: right;
+}
+
+.qty-btn {
+    margin-inline: 8px;
+}
+
+.qty-icon {
+    font-size: 20px;
+}
+
+.total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 500;
+    margin-block-end: 0;
+}
+
+.total-label {
+    color: var(--primary);
+    margin-inline-end: 8px;
+}
+
+:host ::ng-deep .selected-item {
+    max-width: 90% !important;
+}
+
+.order-label {
+    margin-block-end: -16px;
+    margin-inline-start: 4px;
+}
+
+.item-table {
+    grid-column: 1 / 3;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.mat-column-itemName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 50% !important;
+    width: 50% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.qty-txt {
+    display: inline;
+    white-space: nowrap;
+    width: 20%;
+    text-align: right;
+}
+
+  th.mat-header-cell {
+    /* text-align: center !important; */
+  }
+
+.center-align {
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.completed {
+    color: var(--success);
+}
+
+.comment-box {
+    margin-block-start: -24px;
+}

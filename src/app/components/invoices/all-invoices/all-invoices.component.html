@@ -1,0 +1,11 @@
+<div class="all-invoices">
+    <app-titlebar
+      breadcrumb="Home > Invoices"
+      title="All Invoices"
+      [buttons]="buttons"
+    ></app-titlebar>
+    <app-all-container title="All">
+      <app-table [displayedColumns]="displayColumns" [url]="url" [columns]="columns" name="Invoices"></app-table>
+    </app-all-container>
+  </div>
+  

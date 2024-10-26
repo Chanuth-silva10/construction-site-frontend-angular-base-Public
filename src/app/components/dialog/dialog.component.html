@@ -1,0 +1,16 @@
+<div class="dialog">
+  <div class="dialog-title-container">
+    <h1>Confirm Delete</h1>
+    <mat-icon mat-dialog-close>cancel</mat-icon>
+
+  </div>
+  <div class="dialog-body">
+    Are you sure you want to delete this item?
+
+    <div mat-dialog-actions class="dialog-actions">
+      <app-button type="confirm" name="Delete" (click)="closeDialog()" ></app-button>
+      <button mat-button mat-dialog-close class="close-btn">Cancel</button>
+    </div>
+  </div>
+
+</div>

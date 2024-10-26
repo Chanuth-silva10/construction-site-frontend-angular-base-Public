@@ -1,0 +1,176 @@
+<div class="add-orders">
+  <app-titlebar
+    breadcrumb="Orders > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+  <!-- Add User form -->
+  <form [formGroup]="addOrderForm" [id]="formName" (ngSubmit)="submit()">
+
+    <div class="grid-wrapper">
+
+      <div class="column-left">
+        <app-add-container title="Order Information">
+
+          <div class="grid-wrapper-form">
+
+            <mat-form-field appearance="outline" class ="supplier-select full-width">
+              <mat-label>Supplier Name</mat-label>
+              <mat-select formControlName="supplier" >
+                <mat-option *ngFor="let sup of suppliers" [value]="sup.id" >
+                  {{sup.name}}
+                </mat-option>
+              </mat-select>
+              <!-- Error message -->
+              <mat-error *ngIf="supplier?.invalid">
+                Supplier name is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class ="supplier-select full-width">
+              <mat-label>Site</mat-label>
+              <mat-select formControlName="site" >
+                <mat-option *ngFor="let site of sites" [value]="site.id" >
+                  {{site.name}}
+                </mat-option>
+              </mat-select>
+              <!-- Error message -->
+              <mat-error *ngIf="site?.invalid">
+                Site name is required.
+              </mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Delivery Address</mat-label>
+              <input matInput type="text" formControlName="deliveryAddress" required>
+
+              <!-- Error message -->
+              <mat-error *ngIf="deliveryAddress?.invalid">
+                Delivery Address is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Expected Delivery Date</mat-label>
+              <input matInput type="date" formControlName="expectedDeliveryDate" required>
+
+              <!-- Error message -->
+              <mat-error *ngIf="expectedDeliveryDate?.invalid">
+                Expected Delivery Date is required.
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Order Notes</mat-label>
+            <textarea cdkTextareaAutosize cdkAutosizeMinRows="8" matInput type="text" formControlName="orderNotes"></textarea>
+
+          </mat-form-field>
+
+        </app-add-container>
+      </div>
+      <div class="column-right">
+        <!-- Form Container: Left -->
+        <app-add-container title="Order-Item Information">
+          <div *ngIf="selectedSupplier!=null && supplierWiseItems.length>0">
+          <table class="item-table" >
+            <tr>
+              <th>Item Name</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+            </tr>
+
+
+            <tr formArrayName="items" *ngFor="let count of orderItems.controls; let i = index" >
+
+              <td [formGroupName]="i">
+                <mat-form-field appearance="outline" class ="item-select">
+                  <mat-label>Please Select an Item</mat-label>
+                  <mat-select formControlName="itemId" (selectionChange)="selectItem(i,$event.value)" >
+                    <mat-option *ngFor="let item of supplierWiseItems" [value]="item._id" >
+                      {{item.itemName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td [formGroupName]="i">
+                <!-- Name inputs -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Qty</mat-label>
+                  <input matInput type="text" formControlName="qty" required (keyup)="calculateTotal()">
+                  <span matSuffix #unit>{{unit.innerText}}</span>
+                  <!-- Error message -->
+                  <mat-error *ngIf="items.qty?.invalid">
+                    Quantity is required.
+                  </mat-error>
+                </mat-form-field>
+              </td >
+              <td [formGroupName]="i">
+                <mat-form-field appearance="outline">
+                  <span matPrefix>Rs. &nbsp;</span>
+                  <input matInput type="text"  formControlName="price" class="price">
+                </mat-form-field>
+              </td>
+              <td>
+                <button
+                  mat-icon-button
+                  class="remove-btn"
+                  type="button"
+                  (click)="removeItem(i)"
+                  color="warn"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </td>
+
+            </tr>
+
+          </table>
+          <div class="add-item-link" (click)="addItem()">
+            + Add Item
+          </div>
+            <div class="total">
+              Total : Rs.{{total.toFixed(2)}}
+            </div>
+          </div>
+
+          <div class="supplier-not-selected" *ngIf="selectedSupplier == null">
+            Please select a supplier to add items to the order
+          </div>
+
+          <div class="supplier-not-selected" *ngIf="supplierWiseItems.length==0 && selectedSupplier != null">
+            The Selected Supplier doesn't have any items. Please select another supplier
+          </div>
+
+        </app-add-container>
+        <app-add-container title="Comments">
+          <div class="single-comment" *ngFor="let comment of commentsArr">
+            <div class="comment-header">
+              {{comment.user}} {{comment.date | date:'medium'}}
+            </div>
+            <div class="comment-body">
+              {{comment.body}}
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+
+            <textarea placeholder="Please Enter your Comments" cdkTextareaAutosize cdkAutosizeMinRows="4" matInput type="text" formControlName="comments"></textarea>
+
+          </mat-form-field>
+          <div class="comment-add-btn">
+            <app-button [name]="'Add'" type="add add-comment" (click)="addComment()" [submit]="false"></app-button>
+          </div>
+        </app-add-container>
+      </div>
+
+
+    </div>
+  </form>
+
+    <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+
+</div>
+

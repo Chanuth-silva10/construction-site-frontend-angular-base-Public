@@ -1,0 +1,123 @@
+<div class="add-users">
+    <app-titlebar
+      breadcrumb="Staff > {{ title }}"
+      [title]="title"
+      [buttons]="buttons"
+    ></app-titlebar>
+  
+    <!-- Add User form -->
+    <form [formGroup]="addUserForm" [id]="formName" (ngSubmit)="submit()">
+        
+      <div class="grid-wrapper">
+  
+        <!-- Form Container: Left -->
+        <app-add-container title="User Information">
+  
+          <div class="grid-wrapper-form">
+            
+            <!-- Name inputs -->
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput type="text" formControlName="firstName" placeholder="Ex. John" required>
+  
+              <!-- Error message -->
+              <mat-error *ngIf="firstName?.invalid">
+                First name is required.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" formControlName="lastName" placeholder="Ex. Doe" required>
+  
+              <mat-error *ngIf="lastName?.invalid">
+                Last name is required.
+              </mat-error>
+            </mat-form-field>
+            
+            <!-- Email input -->
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email" placeholder="Ex. johndoe@example.com" required>
+  
+              <!-- Check for specific validation errors -->
+              <mat-error *ngIf="email?.errors?.required">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="email?.errors?.email">
+                Please enter a valid email address.
+              </mat-error>
+            </mat-form-field>
+  
+            <!-- Password input -->
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="showPass ? 'text' : 'password'" formControlName="password" required>
+              
+              <!-- Show/hide password button -->
+              <mat-icon matSuffix (click)="showPass = !showPass" class="btn-show-pass">
+                {{ showPass ? 'visibility_off' :'visibility' }}
+              </mat-icon>
+  
+              <mat-hint>Password should contain at least 8 characters, including one uppercase letter and a number</mat-hint>
+  
+              <mat-error *ngIf="password?.errors?.required">
+                Password is required.
+              </mat-error>
+              <mat-error *ngIf="password?.errors?.minlength">
+                Must have a minimum of 8 characters.
+              </mat-error>
+              <mat-error *ngIf="password?.errors?.pattern">
+                Must have an uppercase letter and a number.
+              </mat-error>
+            </mat-form-field>
+  
+            <!-- Phone input -->
+            <mat-form-field appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input matInput type="tel" formControlName="phone" placeholder="Ex. 0123456789" required>
+              
+              <mat-error *ngIf="phone?.errors?.required">
+                Phone number is required.
+              </mat-error>
+              <mat-error *ngIf="phone?.errors?.pattern">
+                Please enter a valid phone number.
+              </mat-error>
+            </mat-form-field>
+  
+          </div>
+  
+        </app-add-container>
+  
+        <!-- Form Container: Right -->
+        <app-add-container title="Permissions">
+  
+          <!-- Role selector -->
+          <mat-form-field appearance="outline">
+            <mat-label>User Type</mat-label>
+            <mat-select formControlName="type" required>
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="type?.invalid">
+              User type is required.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Permission selector -->
+          <ng-container *ngFor="let permission of permissions; let i = index" formArrayName="permissions">
+            <mat-checkbox [formControlName]="i">{{permission.name}}</mat-checkbox>
+          </ng-container>
+        
+        </app-add-container>
+        
+      </div>
+  
+    </form>
+  
+    <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+  
+  </div>
+  

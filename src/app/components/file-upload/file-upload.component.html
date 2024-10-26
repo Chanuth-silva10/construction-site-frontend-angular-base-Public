@@ -1,0 +1,38 @@
+<div class="dropzone" appDragDrop (fileDropped)="onFileDropped($event)">
+    <input type="file" #fileDropRef id="fileDropRef" [multiple]="multiple" (change)="fileBrowseHandler($event.target)" />
+    <div *ngIf="images.length == 0">
+      <div class="file-upload-icon">
+        <mat-icon >file_upload</mat-icon>
+      </div>
+      <h3>Drag and drop images here</h3>
+      <h3>or</h3>
+      <label for="fileDropRef">Browse Images</label>
+    </div>
+    <div *ngIf="images.length > 0" class="upload-img-container">
+      <div *ngFor="let image of images; let i = index">
+        <span *ngIf="image.name == null">
+           <div class="remove-img" (click)="deleteFile(i)"><mat-icon>close</mat-icon></div>
+          <img src="{{imageUrl}}/image/{{image}}" class="upload-img" >
+  <!--        <p class="upload-img-name">{{image}}</p>-->
+        </span>
+        <span *ngIf="image.name != null">
+          <div class="remove-img" (click)="deleteFile(i)"><mat-icon>close</mat-icon></div>
+          <img src="{{image.img}}" class="upload-img" >
+  <!--        <p class="upload-img-name">{{image.name}}</p>-->
+        </span>
+      </div>
+      <div class="upload-add-icon" *ngIf="multiple">
+        <mat-icon >add</mat-icon>
+      </div>
+    </div>
+  <!--  <div *ngIf="editImages.length > 0" class="upload-img-container">-->
+  <!--    <div *ngFor="let image of editImages">-->
+  <!--      <img src="http://localhost:3000/api/products/image/{{image}}" class="upload-img" >-->
+  <!--      <p class="upload-img-name">{{image}}</p>-->
+  <!--    </div>-->
+  <!--    <div class="upload-add-icon" *ngIf="multiple">-->
+  <!--      <mat-icon >add</mat-icon>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  </div>
+  

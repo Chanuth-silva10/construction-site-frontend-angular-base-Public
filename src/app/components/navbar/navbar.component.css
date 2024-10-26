@@ -1,0 +1,81 @@
+.navbar{
+  width:230px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(360deg, #3F7976 0%, #1A2238 100%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+}
+
+.logo {
+  color: #FFFFFF;
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-family: 'Ananda Black', sans-serif;
+  font-style: normal;
+  font-size: 28px;
+  user-select: none;
+  padding:4px;
+}
+
+.divider {
+  margin-block-start: 6px;
+  color: var(--white);
+  width: 100%;
+  background: white;
+}
+
+.nav-btn {
+  width: 100%;
+  height: 48px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: start;
+}
+
+.nav-btn-icon {
+  float: left;
+  margin-block-start: 4px;
+  margin-inline-end: 10px;
+}
+
+mat-expansion-panel, mat-expansion-panel-header {
+  background: transparent;
+  padding: 0;
+}
+
+::ng-deep div.mat-expansion-panel-body {
+  padding: 0;
+}
+
+mat-expansion-panel-header.mat-expanded {
+  height: 48px;
+}
+
+.sub-nav-btn {
+  padding-inline-start: 48px;
+}
+
+.expand-icon {
+  margin-block-start: 6px;
+  float: right;
+}
+
+.open {
+  transform: rotate(-180deg);
+  transition: 200ms linear;
+}
+
+.closed {
+  transition: 200ms linear;
+}
+
+.active {
+  background-image: linear-gradient( to right, #fefefe 4%, rgb(255 255 255 / 40%) 4% );
+}

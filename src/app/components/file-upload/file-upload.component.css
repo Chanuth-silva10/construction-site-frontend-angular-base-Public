@@ -1,0 +1,127 @@
+.file-upload-icon {
+    background-color: #3F7976;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 50%;
+    width: fit-content;
+    margin: 10px auto;
+  }
+  .dropzone {
+    width: 100%;
+    cursor: pointer;
+    padding: 2rem;
+    text-align: center;
+    border: dashed 1px #979797;
+    position: relative;
+    margin: 0 auto;
+  }
+  .dropzone  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
+  .dropzone  label {
+    color: white;
+    width: 180px;
+    border-radius: 10px;
+    background-color: #3F7976;
+    padding: 12px 16px;
+  }
+
+  .dropzone  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #38424c;
+  }
+  .upload-img-container{
+    display: flex;
+    align-items: center;
+  }
+  .upload-img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+  }
+  .upload-img-name{
+    font-size: 14px;
+    padding: 5px;
+    font-weight: 500;
+  }
+  .upload-add-icon{
+    background-color: #ccc;
+    color: white;
+    padding: 11px 15px;
+    border-radius: 50%;
+    width: fit-content;
+    margin: 25px 25px 0;
+  }
+  .upload-add-icon .mat-icon{
+    padding-top: 2px;
+  }
+  /* Shake animation */
+  @keyframes shake {
+    0% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+      transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+      transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+      transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+      transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+      transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+      transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+      transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+      transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+      transform: translate(1px, -2px) rotate(-1deg);
+    }
+  }
+  .remove-img{
+    background-color: #d00d1f;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    right: -78px;
+    top: 22px;
+    z-index: 3;
+  }
+  .remove-img .mat-icon{
+    font-size: 16px;
+    padding-top: 4px;
+  }

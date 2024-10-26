@@ -1,0 +1,126 @@
+<div class="add-items">
+  <app-titlebar
+    breadcrumb="Items > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+  <!-- Add User form -->
+  <form [formGroup]="addItemForm" [id]="formName" (ngSubmit)="submit()">
+
+    <div class="grid-wrapper">
+      <div class="column-left">
+      <!-- Form Container: Left -->
+      <app-add-container title="Item Information">
+
+        <div class="grid-wrapper-form">
+
+          <!-- Name inputs -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Item Name</mat-label>
+            <input matInput type="text" formControlName="itemName" required>
+
+            <!-- Error message -->
+            <mat-error *ngIf="itemName?.invalid">
+              Item name is required.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Item Code</mat-label>
+            <input matInput type="text" formControlName="itemCode" placeholder="Ex. Item001" required>
+
+            <mat-error *ngIf="defaultUnit?.invalid">
+              Item code is required.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Default Unit</mat-label>
+            <input matInput type="text" formControlName="defaultUnit" placeholder="Ex. cube" required>
+
+            <mat-error *ngIf="defaultUnit?.invalid">
+              Default Unit is required.
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+      </app-add-container>
+        <app-add-container title="Supplier wise Item Information">
+
+          <table class="supplier-item-table">
+            <tr>
+              <th>Supplier</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+            </tr>
+
+
+            <tr formArrayName="supplier" *ngFor="let count of supplier.controls; let i = index" >
+
+              <td [formGroupName]="i">
+                <mat-form-field appearance="outline" class ="supplier-select">
+                  <mat-select formControlName="supplierId" >
+                    <mat-label>Supplier Name</mat-label>
+                    <mat-option *ngFor="let sup of suppliers" [value]="sup.id" >
+                      {{sup.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td [formGroupName]="i">
+                <!-- Name inputs -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Qty</mat-label>
+                  <input matInput type="text" formControlName="qty" required>
+
+                  <!-- Error message -->
+                  <mat-error *ngIf="itemName?.invalid">
+                    Quantity is required.
+                  </mat-error>
+                </mat-form-field>
+
+              </td >
+              <td [formGroupName]="i">
+                <mat-form-field appearance="outline">
+                  <mat-label>Unit Price</mat-label>
+                  <input matInput type="text" formControlName="unitPrice" required>
+
+                  <mat-error *ngIf="defaultUnit?.invalid">
+                    Unit Price is required.
+                  </mat-error>
+
+                </mat-form-field>
+              </td>
+
+            </tr>
+
+          </table>
+          <div class="add-supplier-link" (click)="addSupplierItem()">
+            + Add Supplier
+          </div>
+
+        </app-add-container>
+      </div>
+
+      <div class="column-right">
+        <!-- Form Container: Right -->
+        <!-- Form Container: Right -->
+        <app-add-container title="Category">
+          <!-- Category selector -->
+          <ng-container *ngFor="let category of categories; let i = index" formArrayName="categories">
+            <mat-checkbox [formControlName]="i">{{category.name}}</mat-checkbox>
+          </ng-container>
+
+        </app-add-container>
+      </div>
+
+
+
+    </div>
+
+  </form>
+
+<!--  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>-->
+
+</div>
+

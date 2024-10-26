@@ -1,0 +1,175 @@
+<div>
+    <app-titlebar
+      breadcrumb="Home > User Profile"
+      title="{{title}}"
+      [buttons]="buttons"
+    ></app-titlebar>
+
+    <div class="grid-wrapper">
+      <!-- Profile Info -->
+      <mat-card class="profile-info-wrapper">
+        <mat-card-header>
+          <img
+            mat-card-avatar
+            class="avatar-card"
+            [src]="avatarPath"
+          >
+          <mat-card-title class="name-card-title">{{ nameString }}</mat-card-title>
+          <mat-card-subtitle class="role-string">{{ roleString }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="grid-wrapper-form profile-info">
+            <p class="user-info-label">Email</p>
+            <p class="user-info-value">{{ emailString }}</p>
+            <p class="user-info-label">Phone</p>
+            <p class="user-info-value">{{ phoneString }}</p>
+          </div>
+
+          <div class="section-btn-container">
+            <mat-button-toggle-group name="section" [(value)]="section">
+              <mat-button-toggle value="personalInfo">
+                <mat-icon>person</mat-icon>
+                Personal Info
+              </mat-button-toggle>
+              <mat-button-toggle value="changePassword">
+                <mat-icon>vpn_key</mat-icon>
+                Change Password
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Personal Info -->
+      <app-add-container title="Personal Information" *ngIf="section === 'personalInfo'">
+        <div class="edit-btn" (click)="toggleEditMode()">
+          <mat-icon>{{ editMode ? 'restart_alt' : 'edit' }}</mat-icon>
+        </div>
+
+        <form [formGroup]="personalInfoForm" [id]="personalInfoFormName" (ngSubmit)="submitPersonalInfo()">
+          <div class="grid-wrapper-form">
+            <label>Avatar</label>
+            <div id="avatar-wrapper">
+              <img [src]="avatarPath" class="avatar-preview">
+              <p class="edit-text" *ngIf="editMode" (click)="toggleAvatarEditMode()">Edit</p>
+            </div>
+
+            <app-file-upload
+              *ngIf="avatarEditMode"
+              [multiple]="false"
+              (fileUploadEvent)="addImage($event)"
+              class="file-upload full-width"
+            ></app-file-upload>
+
+            <label for="firstName">First Name</label>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" id="firstName" formControlName="firstName">
+
+              <mat-error *ngIf="firstName?.invalid">
+                First name is required.
+              </mat-error>
+            </mat-form-field>
+
+            <label for="lastName">Last Name</label>
+            <mat-form-field appearance="outline">
+              <input matInput type="text" id="lastName" formControlName="lastName">
+
+              <mat-error *ngIf="lastName?.invalid">
+                Last name is required.
+              </mat-error>
+            </mat-form-field>
+
+            <label for="email">Email</label>
+            <mat-form-field appearance="outline">
+              <input matInput type="email" id="email" formControlName="email">
+
+              <mat-error *ngIf="email?.errors?.required">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="email?.errors?.email">
+                Please enter a valid email address.
+              </mat-error>
+            </mat-form-field>
+
+            <label for="phone">Phone</label>
+            <mat-form-field appearance="outline">
+              <input matInput type="tel" id="phone" formControlName="phone">
+
+              <mat-error *ngIf="phone?.errors?.required">
+                Phone number is required.
+              </mat-error>
+              <mat-error *ngIf="phone?.errors?.pattern">
+                Please enter a valid phone number.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="bottom-btn-container" *ngIf="editMode">
+            <app-button type="cancel white" name="Cancel" (click)="toggleEditMode('off')"></app-button>
+            <app-button type="save blue" [submit]="true" [attr.form]="personalInfoFormName" name="Save"></app-button>
+          </div>
+        </form>
+      </app-add-container>
+
+      <!-- Change Password -->
+      <app-add-container title="Change Password" *ngIf="section === 'changePassword'">
+        <form [formGroup]="changePasswordForm" [id]="changePasswordFormName" (ngSubmit)="submitPasswordChange()">
+          <div class="grid-wrapper-form">
+
+            <label for="currentPassword">Current Password</label>
+            <mat-form-field appearance="outline">
+              <input matInput [type]="showPass ? 'text' : 'password'" id="currentPassword" formControlName="currentPassword">
+
+              <mat-icon matSuffix (click)="showPass = !showPass" class="btn-show-pass">
+                {{ showPass ? 'visibility_off' :'visibility' }}
+              </mat-icon>
+
+              <mat-error *ngIf="currentPassword?.errors?.required">
+                Current password is required.
+              </mat-error>
+              <mat-error *ngIf="currentPassword?.errors?.incorrect">
+                Password is incorrect.
+              </mat-error>
+            </mat-form-field>
+
+            <label for="newPassword">New Password</label>
+            <mat-form-field appearance="outline">
+              <input matInput [type]="showPass ? 'text' : 'password'" id="newPassword" formControlName="newPassword" (input)="checkPasswordMatch()">
+
+              <mat-icon matSuffix (click)="showPass = !showPass" class="btn-show-pass">
+                {{ showPass ? 'visibility_off' :'visibility' }}
+              </mat-icon>
+
+              <mat-error *ngIf="newPassword?.errors?.required">
+                New password is required.
+              </mat-error>
+              <mat-error *ngIf="newPassword?.errors?.minlength">
+                Must have a minimum of 8 characters.
+              </mat-error>
+              <mat-error *ngIf="newPassword?.errors?.pattern && !newPassword?.errors?.minlength">
+                Must have an uppercase letter and a number.
+              </mat-error>
+            </mat-form-field>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <mat-form-field appearance="outline">
+              <input matInput [type]="showPass ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" (input)="checkPasswordMatch()">
+
+              <mat-icon matSuffix (click)="showPass = !showPass" class="btn-show-pass">
+                {{ showPass ? 'visibility_off' :'visibility' }}
+              </mat-icon>
+
+              <mat-error *ngIf="confirmPassword?.errors?.noMatch">
+                Passwords do not match
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="bottom-btn-container">
+            <app-button type="save blue" [submit]="true" [attr.form]="personalInfoFormName" name="Update Password"></app-button>
+          </div>
+        </form>
+      </app-add-container>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 .save{
-  background-color: #19223b;
+  background-color: #2D4A4C;
   color: white;
   border-radius: 25px;
   font-weight: 500;
@@ -23,24 +23,24 @@
   color: white;
   width: 150px;
   border-radius: 10px;
-  background-color: #0E3472;
+  background-color: #2D4A4C;
   padding: 8px 20px;
   text-align: center;
   margin: 25px auto;
   display: block;
 }
 .blue{
-  background-color: #0E3472;
+  background-color: #2F4D4E;
   color: white;
 }
 .white{
   background-color: white;
-  color: #297FB7;
+  color: #2D4A4C;
 }
 .add-variant{
   color: white;
   border-radius: 20px;
-  background-color: #0E3472;
+  background-color: #2F4D4E;
   padding: 8px 25px;
   text-align: center;
   display: block;
@@ -49,7 +49,7 @@
 .confirm{
   color: white;
   border-radius: 20px;
-  background-color: #0E3472;
+  background-color: #2F4D4E;
   padding: 8px 25px;
   text-align: center;
   display: block;

@@ -1,0 +1,108 @@
+<div class="add-orders" *ngIf="authenticated">
+
+  <div class="title-bar">
+    <div class="breadcrumb">Orders > View Orders</div>
+    <div class="title-section">
+      <div class="title">View Orders</div>
+      <div class="buttons" *ngIf="true">
+        <app-button name="Reject Order" type="cancel" (click)="setOrderStatus('Declined')"></app-button>
+        <app-button name="Approve Order" type="save" (click)="setOrderStatus('Approved')"></app-button>
+      </div>
+    </div>
+
+  </div>
+  <!-- Add User form -->
+
+    <div class="grid-wrapper">
+
+      <div class="column-left">
+        <app-add-container title="Order Information">
+          <div class="row">
+            <div class="col-md-6 label">Order reference No</div>
+            <div class="col-md-6">{{order.orderReferenceNo}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Order Status</div>
+            <div class="col-md-6">{{order.status}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Supplier Name</div>
+            <div class="col-md-6">{{order.supplier.storeName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Expected Delivery Date</div>
+            <div class="col-md-6">{{order.expectedDeliveryDate  | date:'medium'}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Order Total</div>
+            <div class="col-md-6">Rs.{{order.total.toFixed(2)}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Site</div>
+            <div class="col-md-6">{{order.site.siteName}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Delivery Address</div>
+            <div class="col-md-6">{{order.deliveryAddress}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 label">Order Notes</div>
+            <div class="col-md-6">{{order.orderNotes}}</div>
+          </div>
+        </app-add-container>
+      </div>
+      <div class="column-right">
+        <!-- Form Container: Left -->
+        <app-add-container title="Order-Item Information">
+
+          <table class="item-table" >
+            <tr>
+              <th>Item Name</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Gross Amount</th>
+            </tr>
+
+            <tr *ngFor="let item of order.items; let i = index" >
+
+              <td>{{item.itemId.itemName}}</td>
+              <td >{{item.qty}} {{item.itemId.defaultUnit}}</td >
+              <td>Rs.{{(item.price).toFixed(2)}}</td>
+              <td>Rs.{{(item.price * item.qty).toFixed(2)}}</td>
+
+            </tr>
+
+          </table>
+          <div class="total">
+            Total : Rs.{{(order.total).toFixed(2)}}
+          </div>
+        </app-add-container>
+        <app-add-container title="Comments">
+          <div class="single-comment" *ngFor="let comment of commentsArr">
+            <div class="comment-header">
+              {{comment.user}} {{comment.date | date:'medium'}}
+            </div>
+            <div class="comment-body">
+              {{comment.body}}
+            </div>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+
+            <textarea placeholder="Please Enter your Comments" cdkTextareaAutosize cdkAutosizeMinRows="4" matInput type="text" [(ngModel)]="comment"></textarea>
+
+          </mat-form-field>
+          <div class="comment-add-btn">
+            <app-button [name]="'Add'" type="add add-comment" (click)="addComment()" [submit]="false"></app-button>
+          </div>
+        </app-add-container>
+      </div>
+
+
+    </div>
+
+
+  <!--  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>-->
+
+</div>
+

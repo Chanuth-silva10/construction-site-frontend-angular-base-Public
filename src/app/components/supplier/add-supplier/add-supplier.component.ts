@@ -13,8 +13,7 @@ import {SupplierService} from "../../../services/supplier/supplier.service";
 })
 export class AddSupplierComponent implements OnInit {
 
-  baseUrl:string = environment.baseUrl;
-  apiUrl = this.baseUrl+'api/supplier';
+  apiUrl ='http://localhost:3001/api/supplier';
 
   update:boolean;
   data:Supplier;

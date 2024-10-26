@@ -1,0 +1,11 @@
+<div class="all-deliveries">
+    <app-titlebar
+      breadcrumb="Home > Deliveries"
+      title="All Deliveries"
+      [buttons]="buttons"
+    ></app-titlebar>
+    <app-all-container title="All">
+      <app-table [displayedColumns]="displayColumns" [url]="url" [columns]="columns" name="Deliveries"></app-table>
+    </app-all-container>
+  </div>
+  

@@ -1,0 +1,49 @@
+<div class="topbar">
+  <!-- Navbar expand button -->
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Search bar -->
+  <mat-form-field appearance="outline" class="searchbar">
+    <mat-label>Search</mat-label>
+    <input matInput type="search">
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+
+  <div class="right-btn-set">
+    <!-- Fullscreen button -->
+    <button mat-icon-button (click)="toggleFullscreen()">
+      <mat-icon>
+        {{ fullscreen ? 'fullscreen_exit' : 'fullscreen' }}
+      </mat-icon>
+    </button>
+
+    <!-- Notifications button -->
+    <button mat-icon-button>
+      <mat-icon>notifications</mat-icon>
+    </button>
+
+    <!-- User actions button -->
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      <img [src]="avatarSrc" ngClass="avatar-topbar">
+      {{ userName }}
+      <mat-icon>expand_more</mat-icon>
+    </button>
+
+    <!-- User menu -->
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item routerLink="user-profile">
+        <mat-icon>person</mat-icon>
+        User Profile
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Log Out
+      </button>
+    </mat-menu>
+  </div>
+</div>

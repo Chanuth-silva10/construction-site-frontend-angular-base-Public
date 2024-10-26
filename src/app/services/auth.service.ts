@@ -3,9 +3,9 @@ import { HttpHeaders } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { Observable, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
 import { Router } from '@angular/router';
-import { FeedbackService } from 'src/app/services/feedback.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 export class AuthService {
   private loginUrl = 'api/auth/login';
   private userUrl = 'api/employees';
-  private user;
+  private user: any;
   private loginStatusSubject = new Subject<boolean>();
   private userSubject = new Subject<any>();
 
@@ -22,12 +22,11 @@ export class AuthService {
       'Content-Type': 'application/json'
     }),
   }
-
+  
   constructor(
     private httpService:HttpService<any>,
     private cookieService: CookieService,
-    private router: Router,
-    private feedback: FeedbackService,
+    private router: Router
   ) { }
 
   init(): void {
@@ -49,8 +48,6 @@ export class AuthService {
           this.userSubject.next(this.user);
         }
       });
-    }else{
-      this.feedback.error('token not this');
     }
   }
 

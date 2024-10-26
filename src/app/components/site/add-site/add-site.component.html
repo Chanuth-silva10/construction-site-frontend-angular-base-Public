@@ -1,0 +1,85 @@
+<div class="add-site">
+  <app-titlebar
+    breadcrumb="Site > {{ title }}"
+    [title]="title"
+    [buttons]="buttons"
+  ></app-titlebar>
+
+  <!-- Add Site form -->
+  <form [formGroup]="addSiteForm" [id]="formName" (ngSubmit)="submit()">
+
+
+
+    <!-- Form Container: Left -->
+    <app-add-container title="Site Information">
+      <div class="grid-wrapper-form">
+        <!-- Name inputs -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Site Id</mat-label>
+            <input matInput type="text" formControlName="siteId"  required>
+
+            <!-- Error message -->
+            <mat-error *ngIf="siteId?.invalid">
+              Site id is required.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Site Name</mat-label>
+          <input matInput type="text" formControlName="siteName"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="siteName?.invalid">
+            Site name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class ="full-width">
+          <mat-label>Site Manager</mat-label>
+          <mat-select formControlName="manager" >
+            <mat-option *ngFor="let manager of siteManagers" [value]="manager.id" >
+              {{manager.name}}
+            </mat-option>
+          </mat-select>
+          <!-- Error message -->
+          <mat-error *ngIf="manager?.invalid">
+            Site name is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>contact</mat-label>
+          <input matInput type="text" formControlName="contact"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="contact?.invalid">
+            Contact is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Site Address</mat-label>
+          <input matInput type="text" formControlName="siteAddress"  required>
+
+          <!-- Error message -->
+          <mat-error *ngIf="siteAddress?.invalid">
+            Site Address is required.
+          </mat-error>
+        </mat-form-field>
+
+
+
+
+
+
+
+
+      </div>
+    </app-add-container>
+
+  </form>
+  <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+
+</div>
+
+

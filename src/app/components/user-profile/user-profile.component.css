@@ -1,0 +1,124 @@
+.grid-wrapper {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .grid-wrapper-form {
+    grid-template-columns: 1fr 3fr;
+    row-gap: 0px;
+  }
+
+  .profile-info-wrapper {
+    padding-block-end: 32px;
+    border: 2px solid #E8E8E8;
+    margin: 30px;
+    border-radius: 10px;
+    max-height: 290px;
+  }
+
+  .avatar-card {
+    height: 72px;
+    width: 72px;
+    background-size: cover;
+    margin-block-end: 24px;
+  }
+
+  .name-card-title {
+    margin-block-start: 14px;
+  }
+
+  .profile-info {
+    row-gap: 0px;
+    padding-inline: 8px;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .user-info-label {
+    font-weight: 500;
+  }
+
+  .user-info-value {
+    color: #757575;
+    text-align: right;
+  }
+
+  .section-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-block-start: 24px;
+  }
+
+  .mat-button-toggle {
+    font-weight: 500;
+    color: #23386A;
+  }
+
+  .mat-button-toggle-checked {
+    background: linear-gradient(92.37deg, #3F7976 -41.5%, #3F7976 2.72%, #253A3F 50.62%, #253A3F 100%);
+    color: var(--white);
+  }
+
+  label {
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 18px;
+  }
+
+  .avatar-preview {
+    height: 96px;
+    width: 96px;
+    margin-block-end: 20px;
+    border-radius: 8px;
+  }
+
+  .edit-text {
+    position: relative;
+    bottom: 0.7em;
+    left: -6.9em;
+    padding-block: 37px;
+    padding-inline: 36px;
+    border-radius: 8px;
+    transition: all 0.5s;
+    color: whitesmoke;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .file-upload {
+    margin-block-end: 16px;
+  }
+
+  mat-form-field {
+    width: 75%;
+  }
+
+  .role-string {
+    text-transform: capitalize;
+  }
+
+  .edit-btn {
+    cursor: pointer;
+    margin-top: -64px;
+    margin-inline-start: 204px;
+    margin-bottom: 36px;
+  }
+
+  .bottom-btn-container{
+    text-align: center;
+    margin-block-start: 16px;
+  }
+
+  /* input {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding-block: 8px;
+    padding-inline: 8px;
+    width: 60%;
+  }
+
+  input:focus {
+    border: 2px solid var(--primary);
+    padding-block: 7px;
+  } */
+

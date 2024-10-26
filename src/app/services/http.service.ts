@@ -7,7 +7,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class HttpService<T> {
-  baseUrl:string = environment.baseUrl;
+  baseUrl:string = "http://localhost:3001/";
   constructor(private http:HttpClient) { }
 
   httpOptions = {

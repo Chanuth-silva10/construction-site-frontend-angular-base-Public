@@ -1,0 +1,51 @@
+<div class="add-deliveries">
+    <app-titlebar
+      breadcrumb="Deliveries > {{ title }}"
+      [title]="title"
+      [buttons]="buttons"
+    ></app-titlebar>
+  
+    <!-- Add Delivery form -->
+    <form [formGroup]="addInvoiceForm" [id]="formName" (ngSubmit)="submit()">
+        
+      <div class="grid-wrapper">
+  
+        <!-- Form Container: Left -->
+        <app-add-container title="Delivery Information" class="delivery-info">
+  
+          <div class="grid-wrapper-form">
+
+            <mat-label class="order-label">Order</mat-label>
+            <ng-multiselect-dropdown
+              placeholder="Select an order"
+              [settings]="dropdownSettings"
+              [data]="orderDropdownItems"
+              [(ngModel)]="orderSelectedItems"
+              [ngModelOptions]="{standalone: true}"
+              required
+            ></ng-multiselect-dropdown>
+
+            <mat-form-field appearance="outline" class="date-input">
+              <mat-label>Delivery date</mat-label>
+              <input matInput formControlName="date" type="date" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="payedAmount-input">
+              <mat-label>Payed Amount (Rs.)</mat-label>
+              <input type="number" matInput formControlName="payedAmount" placeholder="Ex. 5000">
+              <mat-error *ngIf="payedAmount?.invalid">
+                Please enter a correct value.
+            </mat-error>
+            </mat-form-field>
+          </div>
+
+        </app-add-container>
+        
+      </div>
+  
+    </form>
+  
+    <mat-progress-bar mode="indeterminate" class="progress-bar" [hidden]="!loading"></mat-progress-bar>
+  
+  </div>
+  

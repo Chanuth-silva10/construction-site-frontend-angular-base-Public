@@ -1,0 +1,23 @@
+.title-bar{
+  height: 140px;
+  padding: 30px;
+}
+.title-bar .breadcrumb{
+  color: #2D4A4C;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.title-bar .title{
+  font-size: 2rem;
+  color: #2D4A4C;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.title-section{
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.title-bar .buttons{
+  margin-top: -18px;
+}

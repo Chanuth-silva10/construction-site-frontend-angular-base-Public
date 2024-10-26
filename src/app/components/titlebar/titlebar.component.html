@@ -1,0 +1,10 @@
+<div class="title-bar">
+  <div class="breadcrumb">{{breadcrumb}}</div>
+  <div class="title-section">
+    <div class="title">{{title}}</div>
+    <div class="buttons">
+        <app-button *ngFor = "let button of buttons" name="{{button.name}}" type="{{button.type}}" [submit]=button.submit formName="{{ button.formName }}" (click)="onClick(button.route)"></app-button>
+    </div>
+  </div>
+
+</div>

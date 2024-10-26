@@ -1,0 +1,48 @@
+<div class="navbar" *ngIf="!loading">
+  <!-- Logo -->
+  <h1 class="logo">CeylonConstruct</h1>
+  <hr class="divider">
+
+  <!-- Navigation Buttons -->
+  <div></div>
+  <div *ngFor="let button of buttons" >
+  <mat-expansion-panel
+    *ngIf="button.hasPermission"
+    hideToggle
+    class="mat-elevation-z0"
+    (opened)="handleOpened(button)"
+    [expanded]="button === openedBtn"
+  >
+    <mat-expansion-panel-header>
+      <button
+        mat-button
+        class="nav-btn"
+        [routerLink]="button.url"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
+        <mat-icon class="nav-btn-icon">{{ button.icon }}</mat-icon>
+        {{ button.text }}
+        <mat-icon
+          class="expand-icon {{ button === openedBtn ? 'open' : 'closed' }}"
+          *ngIf="button.subButtons"
+        >
+          arrow_drop_down
+        </mat-icon>
+      </button>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <button
+        mat-button
+        class="nav-btn sub-nav-btn"
+        *ngFor="let subButton of button.subButtons"
+        [routerLink]="subButton.url"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
+        {{ subButton.text }}
+      </button>
+    </ng-template>
+  </mat-expansion-panel>
+  </div>
+</div>

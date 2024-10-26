@@ -1,0 +1,118 @@
+.mat-header-cell{
+  background-color:#F8F8FB;
+  text-align: center;
+}
+.mat-table{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+td.mat-cell{
+  border-bottom: 1px solid #E8E8E8;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: 500;
+}
+th.mat-header-cell{
+  border-bottom: none;
+}
+.mat-icon{
+  color: #3F7976;
+  padding-right: 30px;
+}
+.table-img{
+  height: 80px;
+  width: 80px;
+}
+.table-topbar{
+  display: flex;
+  justify-content: space-between;
+}
+.table-topbar .section-right > div{
+  margin-left: 10px;
+}
+.table-topbar button{
+  background-color: white;
+  border-color: #E5E5E5;
+  padding: 0.35em 1.5em;
+  margin-top: 4px;
+}
+.all-products .view{
+  width: 140px;
+}
+.all-products .search{
+  width: 35%;
+}
+.table-topbar .section-right{
+  display: flex;
+}
+.pagination-icon{
+  padding: 4px;
+  border: 1px solid #C8C8C8;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  padding-left: 9px;
+  cursor: pointer;
+}
+.page-numbers{
+  display: flex;
+}
+.page-numbers > div{
+  margin: 0px 10px;
+}
+.page-number{
+  width: 45px;
+  font-size: 15px;
+  margin-top: -5px;
+}
+
+.search{
+  width: 40%;
+}
+.view{
+  width: 100px;
+}
+.view .mat-select-value{
+  top: -3px;
+  position: relative;
+}
+
+.id {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.status-cell {
+  padding-inline: 8px;
+}
+
+.status {
+  text-transform: capitalize;
+  padding-block: 8px;
+  border-radius: 4px;
+  margin: 0;
+  color: var(--white);
+  background-color: #ff8220;
+
+}
+
+.status.partiallyApproved {
+  background-color: grey;
+}
+
+.status.Pending,.status.waiting {
+  background-color: #d3b000;
+}
+
+.status.Declined, .status.Returned {
+  background-color: var(--error);
+}
+
+.status.Approved, .status.Placed {
+  background-color: var(--success);
+}
+.mat-icon{
+  cursor: pointer;
+}

@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./add-container.component.css']
 })
 export class AddContainerComponent implements OnInit {
-
+       
   @Input() title: String | undefined;
 
   constructor() { }

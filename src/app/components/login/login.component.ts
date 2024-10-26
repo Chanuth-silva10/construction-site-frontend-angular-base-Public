@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
@@ -21,12 +21,15 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private cookieService: CookieService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', Validators.required]
     });
   }
 
@@ -45,33 +48,30 @@ export class LoginComponent implements OnInit {
       const credentials = {
         email: this.email?.value,
         password: this.password?.value,
-        type: 'user',
-      };
+        type: 'user'
+      }
 
-      this.authService
-        .login(credentials)
-        .subscribe(
-          (data) => {
-            if (data.token) {
-              console.log(data);
-              this.cookieService.set('token', data.token);
-              this.authService.loggedIn();
-              this.router.navigateByUrl('/items');
-            } else {
-              this.feedback.error(data.msg);
-            }
-          },
-          (error) => {
-            if (error.status === 404) {
-              this.feedback.error('Email is not registered');
-            } else if (error.status === 401) {
-              this.feedback.error('Password is incorrect');
-            } else {
-              this.feedback.error('Something went wrong, please try again...');
-            }
+      this.authService.login(credentials).subscribe(
+        data => {
+          if (data.token) {
+            this.cookieService.set('token', data.token);
+            this.authService.loggedIn();
+            this.router.navigateByUrl('/items');
+          } else {
+            this.feedback.error(data.msg);
           }
-        )
-        .add(() => (this.loading = false));
+        },
+        error => {
+          if (error.status === 404) {
+            this.feedback.error("Email is not registered");
+          } else if (error.status === 401) {
+            this.feedback.error("Password is incorrect");
+          } else {
+            this.feedback.error("Something went wrong, please try again...");
+          }
+        }
+      ).add(() => this.loading = false);
     }
   }
+
 }

@@ -13,8 +13,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AddCategoryComponent implements OnInit {
 
-  baseUrl:string = environment.baseUrl;
-  apiUrl = this.baseUrl+'api/category';
+
+  apiUrl ='http://localhost:3001/api/category';
 
   update:boolean;
   data:Category;
